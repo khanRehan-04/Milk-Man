@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Popup
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -11,15 +13,15 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - interactable
+  - hand
+  - RCC
+  - RCC_WheelCollider
+  - RCC_DetachablePart
+  - RCC_Trailer
+  - RCC_Crasher
+  - Minimap
+  - MinimapGFX
   - 
   - 
   - 

@@ -4,16 +4,16 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 6eb5a16724dc9e34481aab88af4bfa3a
+  productGUID: a573dc754846905438113b616e9ec093
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Milk Man
+  productName: Milkman
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.Milkman
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -834,7 +835,24 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: BCG_RCC
+    EmbeddedLinux: BCG_RCC
+    GameCoreScarlett: BCG_RCC
+    GameCoreXboxOne: BCG_RCC
+    LinuxHeadlessSimulation: BCG_RCC
+    Nintendo Switch: BCG_RCC
+    PS4: BCG_RCC
+    PS5: BCG_RCC
+    QNX: BCG_RCC
+    Stadia: BCG_RCC
+    Standalone: BCG_RCC
+    VisionOS: BCG_RCC
+    WebGL: BCG_RCC
+    Windows Store Apps: BCG_RCC
+    XboxOne: BCG_RCC
+    iPhone: BCG_RCC
+    tvOS: BCG_RCC
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -866,14 +884,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Milk Man
+  metroPackageName: Milkman
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Milk Man
+  metroApplicationDescription: Milkman
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -941,13 +959,13 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: f34068bf-b355-4287-829c-a457bab7dfcd
+  cloudProjectId: 8b457772-00e6-4a58-a58a-46bfe3e20d28
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Milk Man
-  organizationId: unity_470e4ac577a915e0cd03
+  projectName: Milkman
+  organizationId: highratedhacker345
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
