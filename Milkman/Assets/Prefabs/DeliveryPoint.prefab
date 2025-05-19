@@ -19715,7 +19715,7 @@ GameObject:
   - component: {fileID: 3123665728112713081}
   m_Layer: 0
   m_Name: DeliveryPoint
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24734,13 +24734,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2180640885541998742}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.6499999, z: 0}
-  m_LocalScale: {x: 1.1545663, y: 1.1545663, z: 1.1545663}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 17, z: 0}
+  m_LocalScale: {x: 0.66713905, y: 0.66713905, z: 0.66713905}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7341253050730213873}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
 --- !u!212 &2876838936239753614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24782,8 +24782,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3ed48f7e628bc334db28cdf53d6747ad, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f5deae6aebf204244a73de8b9e8305d8, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.4871192, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

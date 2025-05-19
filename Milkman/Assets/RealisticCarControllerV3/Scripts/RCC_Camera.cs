@@ -1121,8 +1121,11 @@ public class RCC_Camera : MonoBehaviour {
 
         }
 
-        TPSDistance = bounds * 2.8f;
-        TPSHeight = bounds * .65f;
+        //TPSDistance = bounds * 2.8f;
+        //TPSHeight = bounds * .65f;
+
+        TPSDistance = 20f;
+        TPSHeight = 5f;
 
     }
 
@@ -1144,8 +1147,11 @@ public class RCC_Camera : MonoBehaviour {
 
         }
 
-        TPSDistance = bounds * 2.8f;
-        TPSHeight = bounds * .65f;
+        //TPSDistance = bounds * 2.8f;
+        //TPSHeight = bounds * .65f;
+
+        TPSDistance = 20f;
+        TPSHeight = 5f;
 
     }
 

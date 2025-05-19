@@ -4,7 +4,7 @@ using System.Collections;
 public class DeliveryZone : MonoBehaviour
 {
     public GameObject popup;
-    private float deliveryDelay = 3f;
+    private float deliveryDelay = 1.5f;
 
     public void SetPopup(GameObject popupRef)
     {

@@ -7,6 +7,7 @@ public class ObjectiveManager : MonoBehaviour
     public GameObject indicatorParticlePrefab;
     public UIManager uiManager;
     public GameObject finalObjectiveObject;
+    public GameObject secondLastObjectiveObject;
 
     [Header("Scene References")]
     public GameObject popup; // Drag your Popup GameObject here in Inspector
@@ -14,13 +15,17 @@ public class ObjectiveManager : MonoBehaviour
 
     public int currentObjectiveIndex = 0;
     private int currentDeliveryIndex = 0;
-    private bool isTimerRunning = false;
-    private float remainingTime;
+    public bool isTimerRunning = false;
+    public float remainingTime;
     private GameObject activeIndicator;
 
     private void Start()
     {
         LoadObjectiveIndex();
+        if (uiManager != null)
+        {
+            uiManager.Initialize(this); // Initialize UIManager
+        }
     }
 
     public void StartObjective()
@@ -28,15 +33,17 @@ public class ObjectiveManager : MonoBehaviour
         if (currentObjectiveIndex >= objectives.Length)
         {
             Debug.Log("All objectives completed. Clearing ALL saved progress.");
-
-            PlayerPrefs.DeleteAll(); // Completely clear all saved preferences
-
+            PlayerPrefs.DeleteAll();
             if (uiManager != null)
             {
-                uiManager.ShowCompletionScreen(); // Or use a custom method to show final game end
+                uiManager.ShowCompletionScreen();
             }
-
             return;
+        }
+
+        if (currentObjectiveIndex == objectives.Length - 2 && secondLastObjectiveObject != null)
+        {
+            secondLastObjectiveObject.SetActive(true);
         }
 
         if (currentObjectiveIndex == objectives.Length - 1 && finalObjectiveObject != null)
@@ -47,6 +54,11 @@ public class ObjectiveManager : MonoBehaviour
         remainingTime = objectives[currentObjectiveIndex].timeLimit;
         isTimerRunning = true;
         ActivateNextDelivery();
+        if (uiManager != null)
+        {
+            uiManager.ShowObjectivePanel(objectives[currentObjectiveIndex]);
+            uiManager.UpdateTimerUI(); // Initial UI update
+        }
         StartCoroutine(TimerCountdown());
     }
 
@@ -55,6 +67,10 @@ public class ObjectiveManager : MonoBehaviour
         while (isTimerRunning && remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
+            if (uiManager != null)
+            {
+                uiManager.UpdateTimerUI(); // Update UI each frame
+            }
             yield return null;
         }
 
@@ -74,26 +90,22 @@ public class ObjectiveManager : MonoBehaviour
 
         Vector3 targetPosition = objectives[currentObjectiveIndex].deliveryLocations[currentDeliveryIndex];
 
-        // Destroy the previous indicator if it exists
         if (activeIndicator != null)
         {
             Destroy(activeIndicator);
         }
 
-        // Instantiate the new indicator at the target position
         activeIndicator = Instantiate(indicatorParticlePrefab, targetPosition, Quaternion.identity);
 
-        // Assign popup to DeliveryZone if it exists
         DeliveryZone deliveryZone = activeIndicator.GetComponent<DeliveryZone>();
         if (deliveryZone != null && popup != null)
         {
             deliveryZone.SetPopup(popup);
         }
 
-        // Set the destination in MinimapDestinationIndicator
         if (minimapDestinationIndicator != null)
         {
-            minimapDestinationIndicator.destination = activeIndicator.transform; // Pass the indicator position
+            minimapDestinationIndicator.destination = activeIndicator.transform;
         }
     }
 
@@ -115,22 +127,28 @@ public class ObjectiveManager : MonoBehaviour
         {
             if (uiManager != null)
             {
-                uiManager.ShowCompletionScreen(); // Show final screen
+                uiManager.ShowCompletionScreen();
             }
-            PlayerPrefs.DeleteAll(); // Completely clear all saved preferences
+            PlayerPrefs.DeleteAll();
             return;
         }
 
         currentObjectiveIndex++;
         SaveObjectiveIndex();
-        uiManager.ShowCompletionScreen();
+        if (uiManager != null)
+        {
+            uiManager.ShowCompletionScreen();
+        }
     }
-
 
     private void FailObjective()
     {
         isTimerRunning = false;
-        uiManager.ShowFailureScreen();
+        if (uiManager != null)
+        {
+            uiManager.ShowFailureScreen();
+            uiManager.UpdateTimerUI(); // Ensure UI reflects timer stop
+        }
     }
 
     private void SaveObjectiveIndex()
@@ -145,8 +163,15 @@ public class ObjectiveManager : MonoBehaviour
 
     public void ResetAllObjectives()
     {
-        PlayerPrefs.DeleteAll(); // Also clear everything when resetting
+        PlayerPrefs.DeleteAll();
         currentObjectiveIndex = 0;
+        currentDeliveryIndex = 0;
+        isTimerRunning = false;
+        remainingTime = 0f;
+        if (uiManager != null)
+        {
+            uiManager.UpdateTimerUI(); // Update UI to reflect reset
+        }
         foreach (var objective in objectives)
         {
             objective.ResetObjective();

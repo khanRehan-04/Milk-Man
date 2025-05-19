@@ -15,7 +15,7 @@ MonoBehaviour:
   objectiveName: 2nd
   objectiveDescription: Deliver the Milk to the 3 locations in time
   deliveryLocations:
-  - {x: -42.41223, y: 1.3402982, z: 26.873398}
-  - {x: -73, y: 1.3402982, z: -6}
-  - {x: -82, y: 1.3402982, z: 43.5}
-  timeLimit: 150
+  - {x: -52.21, y: 1.21, z: 26}
+  - {x: -91.14, y: 1.21, z: -15.3}
+  - {x: -108.4, y: 1.21, z: 29.31}
+  timeLimit: 165

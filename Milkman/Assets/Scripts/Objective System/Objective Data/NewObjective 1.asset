@@ -16,5 +16,5 @@ MonoBehaviour:
   objectiveDescription: Deliver the Milk in time. Use Truck for fast delivery. Follow
     the location.
   deliveryLocations:
-  - {x: -81.9, y: 1.3402982, z: 15.3}
-  timeLimit: 100
+  - {x: -108.29, y: 1.21, z: -1.31}
+  timeLimit: 105

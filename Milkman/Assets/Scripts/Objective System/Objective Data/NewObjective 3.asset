@@ -16,5 +16,5 @@ MonoBehaviour:
   objectiveDescription: "Deliver the milk to the last house. Don\u2019t be late.
     Old man gets mad."
   deliveryLocations:
-  - {x: -134.59, y: 1.06, z: -110.7}
+  - {x: -170.96, y: 0.97, z: -148.74}
   timeLimit: 120

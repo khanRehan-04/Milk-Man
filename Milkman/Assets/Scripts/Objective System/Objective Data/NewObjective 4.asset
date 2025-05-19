@@ -16,5 +16,5 @@ MonoBehaviour:
   objectiveDescription: "Deliver the milk to the lone house beyond the village. Time
     is tight. The path won\u2019t make it easy."
   deliveryLocations:
-  - {x: -60.3, y: 1.06, z: 99.7}
+  - {x: -78.76, y: 0.97, z: 119.41}
   timeLimit: 150

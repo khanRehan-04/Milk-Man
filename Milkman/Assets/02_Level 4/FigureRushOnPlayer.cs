@@ -28,17 +28,17 @@ public class FigureRushOnPlayer : MonoBehaviour
 
         yield return new WaitForSeconds(waitBeforeRush);
 
-        //Vector3 direction = (player.position - figure.transform.position).normalized;
+        Vector3 direction = (player.position - figure.transform.position).normalized;
         AudioManager.Instance.PlaySFX("late");
 
-        //float timer = 0f;
-        //while (timer < rushDuration)
-        //{
-        //    figure.transform.position += direction * rushSpeed * Time.deltaTime;
-        //    timer += Time.deltaTime;
-        //    yield return null;
-        //}
+        float timer = 0f;
+        while (timer < rushDuration)
+        {
+            figure.transform.position += direction * rushSpeed * Time.deltaTime;
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
-        //figure.SetActive(false);
+        figure.SetActive(false);
     }
 }
