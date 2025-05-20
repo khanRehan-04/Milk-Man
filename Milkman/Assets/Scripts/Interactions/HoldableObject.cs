@@ -4,7 +4,7 @@ public class HoldableObject : MonoBehaviour
 {
     [Header("Layer Setup")]
     [SerializeField] private string heldLayer = "hand";
-    [SerializeField] private string worldLayer = "interactable";
+    [SerializeField] private string worldLayer = "Interactable";
 
     private bool isHeld;
 

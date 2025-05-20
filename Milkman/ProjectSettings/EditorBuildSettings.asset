@@ -9,15 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Splash.unity
     guid: d0ef9b06aad02574494a73d776726004
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a2a6da19f0692b541b6a0883b96d293f
+  - enabled: 1
     path: Assets/Scenes/SceneLoader.unity
     guid: c0fa55fc2871b5e4583ed6f0ca4c01f4
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: c30a38adbb5be7a4e96a0206c04d63f5
   - enabled: 1
     path: Assets/Scenes/CityScene.unity
     guid: 58d66e984f4b70d44bf3ee6bf156ab0b
   - enabled: 1
     path: Assets/Scenes/VillageScene.unity
     guid: 53a8d4d76c6d2f34d9be67ad729978a7
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

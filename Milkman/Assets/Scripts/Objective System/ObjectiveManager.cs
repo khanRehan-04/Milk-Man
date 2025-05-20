@@ -11,7 +11,6 @@ public class ObjectiveManager : MonoBehaviour
 
     [Header("Scene References")]
     public GameObject popup; // Drag your Popup GameObject here in Inspector
-    public MinimapDestinationIndicator minimapDestinationIndicator; // Reference to MinimapDestinationIndicator
 
     public int currentObjectiveIndex = 0;
     private int currentDeliveryIndex = 0;
@@ -96,16 +95,12 @@ public class ObjectiveManager : MonoBehaviour
         }
 
         activeIndicator = Instantiate(indicatorParticlePrefab, targetPosition, Quaternion.identity);
+        activeIndicator.SetActive(true);    
 
         DeliveryZone deliveryZone = activeIndicator.GetComponent<DeliveryZone>();
         if (deliveryZone != null && popup != null)
         {
             deliveryZone.SetPopup(popup);
-        }
-
-        if (minimapDestinationIndicator != null)
-        {
-            minimapDestinationIndicator.destination = activeIndicator.transform;
         }
     }
 
@@ -130,6 +125,7 @@ public class ObjectiveManager : MonoBehaviour
                 uiManager.ShowCompletionScreen();
             }
             PlayerPrefs.DeleteAll();
+            uiManager.GoToHome();
             return;
         }
 

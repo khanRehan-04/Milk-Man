@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening; // Required for DOTween
 using UnityEngine.UI; // Required for Button
+using System; // Required for events
 
 public class VehicleManager : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class VehicleManager : MonoBehaviour
     public Button carExitButton; // Reference to the exit button
     private DOTweenAnimation exitButtonAnimation; // Reference to the DOTween animation
     private bool isInCar = false; // Tracks if player is in the car
+
+    // Events for entering and exiting the car
+    public event Action OnEnterCar;
+    public event Action OnExitCar;
 
     public void EnterCar()
     {
@@ -60,7 +65,6 @@ public class VehicleManager : MonoBehaviour
         // Get reference to the exit button and its DOTween animation
         if (carCanvas != null)
         {
-            //carExitButton = GetComponentInChildren<Button>();
             if (carExitButton != null)
             {
                 exitButtonAnimation = carExitButton.GetComponent<DOTweenAnimation>();
@@ -77,6 +81,9 @@ public class VehicleManager : MonoBehaviour
 
         // Set flag to start checking for Point objects
         isInCar = true;
+
+        // Invoke the enter car event
+        OnEnterCar?.Invoke();
     }
 
     public void ExitCar()
@@ -129,6 +136,9 @@ public class VehicleManager : MonoBehaviour
 
         // Disable car controls
         carController.enabled = false;
+
+        // Invoke the exit car event
+        OnExitCar?.Invoke();
     }
 
     private void Update()
