@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewObjective", menuName = "MilkDelivery/Objective")]
 public class DeliveryObjective : ScriptableObject
@@ -7,6 +7,7 @@ public class DeliveryObjective : ScriptableObject
     [TextArea] public string objectiveDescription;
     public Vector3[] deliveryLocations; // Store positions instead of Transforms
     public float timeLimit;
+    public int milkCanCount; // Number of milk cans required for this objective
 
     public bool IsCompleted
     {

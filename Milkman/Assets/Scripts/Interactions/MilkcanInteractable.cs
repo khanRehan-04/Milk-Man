@@ -25,11 +25,18 @@ public class MilkcanInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!MilkcanManager.Instance.CanPickNewCan()) return;
-
-        if (!isHeld)
+        if (FlowManager.Instance.CanPerformAction(GameState.LoadMilk))
         {
-            PickUp();
+            if (!MilkcanManager.Instance.CanPickNewCan()) return;
+
+            if (!isHeld)
+            {
+                PickUp();
+            }
+        }
+        else
+        {
+            FlowManager.Instance.ShowCurrentStatePopup();
         }
     }
 

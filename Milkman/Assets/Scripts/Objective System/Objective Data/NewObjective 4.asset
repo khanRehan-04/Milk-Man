@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: NewObjective 4
   m_EditorClassIdentifier: 
   objectiveName: 4th
-  objectiveDescription: "Deliver the milk to the lone house beyond the village. Time
+  objectiveDescription: "Deliver 1 milk to the lone house beyond the village. Time
     is tight. The path won\u2019t make it easy."
   deliveryLocations:
-  - {x: -78.76, y: 0.97, z: 119.41}
-  timeLimit: 150
+  - {x: -110.8, y: 1.306, z: 151.2}
+  timeLimit: 210
+  milkCanCount: 1

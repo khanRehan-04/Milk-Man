@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: NewObjective 1
   m_EditorClassIdentifier: 
   objectiveName: 1st
-  objectiveDescription: Deliver the Milk in time. Use Truck for fast delivery. Follow
+  objectiveDescription: Deliver 1 Milk in time. Use Truck for fast delivery. Follow
     the location.
   deliveryLocations:
-  - {x: -108.29, y: 1.21, z: -1.31}
-  timeLimit: 105
+  - {x: -150.7, y: 1.306, z: -13.18}
+  timeLimit: 150
+  milkCanCount: 1

@@ -55,7 +55,7 @@ public class ObjectiveManager : MonoBehaviour
         ActivateNextDelivery();
         if (uiManager != null)
         {
-            uiManager.ShowObjectivePanel(objectives[currentObjectiveIndex]);
+            //uiManager.ShowObjectivePanel(objectives[currentObjectiveIndex]);
             uiManager.UpdateTimerUI(); // Initial UI update
         }
         StartCoroutine(TimerCountdown());

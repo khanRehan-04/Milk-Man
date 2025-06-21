@@ -11,8 +11,7 @@ public class NPCObjectiveTrigger : MonoBehaviour
         {
             var objective = objectiveManager.objectives[objectiveManager.currentObjectiveIndex];
             uiManager.ShowObjectivePanel(objective);
-
-            AcceptObjective();
+            FlowManager.Instance.CompleteAction(false);
         }
     }
 
@@ -22,11 +21,5 @@ public class NPCObjectiveTrigger : MonoBehaviour
         {
             uiManager.HideObjectivePanel();
         }
-    }
-
-    public void AcceptObjective()
-    {
-        //uiManager.HideObjectivePanel();
-        objectiveManager.StartObjective();
     }
 }

@@ -17,16 +17,6 @@ public class UIManager : MonoBehaviour
     private bool hasShownObjectivePanel = false; // Tracks if ShowObjectivePanel was called
     private float popupCycleDelay = 8.5f; // Delay between popup cycles (adjustable)
 
-    private void Start()
-    {
-        if (popup != null)
-        {
-            popup.SetActive(true); // Activate popup at start
-            StartCoroutine(HidePopupAfterDelay(3f)); // Hide after 3 seconds
-            StartCoroutine(PopupCycle()); // Start popup cycle
-        }
-    }
-
     public void Initialize(ObjectiveManager manager)
     {
         objectiveManager = manager;
@@ -37,13 +27,12 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("popup");
         objectiveText.text = objective.objectiveDescription;
         objectivePanel.SetActive(true);
-        Timer.SetActive(true);
         hasShownObjectivePanel = true; // Stop popup cycle
-        UpdateTimerUI(); // Update timer UI when objective starts
     }
 
     public void HideObjectivePanel()
     {
+        hasShownObjectivePanel = false;
         objectivePanel.SetActive(false);
     }
 
@@ -75,6 +64,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimerUI()
     {
+        if (!Timer.activeSelf)
+        {
+            Timer.SetActive(true);
+        }
+
         if (objectiveManager == null || !objectiveManager.isTimerRunning)
         {
             if (timerText != null) timerText.text = "00:00";
@@ -100,7 +94,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private IEnumerator HidePopupAfterDelay(float delay)
+    public IEnumerator HidePopupAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (popup != null)
@@ -109,7 +103,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private IEnumerator PopupCycle()
+    public IEnumerator PopupCycle()
     {
         while (!hasShownObjectivePanel)
         {

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class TruckTrunk : MonoBehaviour
 {
     [SerializeField] private Transform[] canSlots;  // Set in Inspector
+    [SerializeField] private ObjectiveManager objectiveManager; // ✅ Reference set manually or via FindObjectOfType
+
     private Dictionary<int, MilkcanInteractable> slotMap = new Dictionary<int, MilkcanInteractable>();
 
     private void Awake()
@@ -12,6 +14,12 @@ public class TruckTrunk : MonoBehaviour
         {
             slotMap[i] = null;  // Initialize slots to null
         }
+
+        // ✅ Optional auto-assign if not set in Inspector
+        if (objectiveManager == null)
+        {
+            objectiveManager = FindObjectOfType<ObjectiveManager>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,16 +27,13 @@ public class TruckTrunk : MonoBehaviour
         var can = other.GetComponent<MilkcanInteractable>();
         if (can == null) return;
 
-        // Check if the milkcan is already in a slot
         int? slotIndex = GetSlotIndex(can);
         if (slotIndex.HasValue)
         {
-            // Send back to the same slot if it's still in the truck
             can.SetTruckProximity(true, canSlots[slotIndex.Value]);
         }
         else
         {
-            // Assign the can to a free slot if available
             int freeSlot = GetFirstFreeSlot();
             if (freeSlot != -1)
             {
@@ -36,7 +41,6 @@ public class TruckTrunk : MonoBehaviour
             }
             else
             {
-                // No available slots
                 can.SetTruckProximity(true, null);
             }
         }
@@ -53,13 +57,13 @@ public class TruckTrunk : MonoBehaviour
 
     public void RegisterPlacedCan(MilkcanInteractable can)
     {
-        // Prevent duplicate registration
         if (IsAlreadyRegistered(can)) return;
 
         int index = GetFirstFreeSlot();
         if (index != -1)
         {
             slotMap[index] = can;
+            TryAdvanceGameState(); // ✅ Check milk can count after placing
         }
     }
 
@@ -98,5 +102,39 @@ public class TruckTrunk : MonoBehaviour
     private bool IsAlreadyRegistered(MilkcanInteractable can)
     {
         return slotMap.ContainsValue(can);
+    }
+
+    private void TryAdvanceGameState()
+    {
+        var flow = FlowManager.Instance;
+
+        if (flow != null && objectiveManager != null && flow.CurrentState == GameState.LoadMilk)
+        {
+            int requiredCans = objectiveManager.objectives[objectiveManager.currentObjectiveIndex].milkCanCount;
+            int placedCans = GetPlacedCanCount();
+
+            if (placedCans >= requiredCans)
+            {
+                flow.CompleteAction(); // ✅ Automatically move to DriveTruck
+            }
+        }
+    }
+
+    private int GetPlacedCanCount()
+    {
+        int count = 0;
+        foreach (var slot in slotMap.Values)
+        {
+            if (slot != null) count++;
+        }
+        return count;
+    }
+
+    public void ResetSlots()
+    {
+        foreach (var key in new List<int>(slotMap.Keys))
+        {
+            slotMap[key] = null;
+        }
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2213050724326316397
 Transform:
   m_ObjectHideFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.464706, y: 1.55, z: 74.633224}
-  m_LocalScale: {x: 2.1269462, y: 2.1269462, z: 2.1269462}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2412950159362243480}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   OffSet: {x: 0, y: 0, z: 0}
-  iconData: {fileID: 11400000, guid: 23c499d78e0c3244cb1ce58a30668254, type: 2}
+  iconData: {fileID: 11400000, guid: af02258b8baa1d745a99938c67ccd186, type: 2}
   ShowCircleArea: 0
   CircleAreaRadius: 10
   CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
@@ -194,7 +194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.06595841, y: -0.47565496}
+  m_AnchoredPosition: {x: -0.06595841, y: -0.39}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &7734152183179130648

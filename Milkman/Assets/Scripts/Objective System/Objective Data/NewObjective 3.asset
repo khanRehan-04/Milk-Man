@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: NewObjective 3
   m_EditorClassIdentifier: 
   objectiveName: 3rd
-  objectiveDescription: "Deliver the milk to the last house. Don\u2019t be late.
-    Old man gets mad."
+  objectiveDescription: "Deliver 1 milk to the last house. Don\u2019t be late. Old
+    man gets mad."
   deliveryLocations:
-  - {x: -170.96, y: 0.97, z: -148.74}
-  timeLimit: 120
+  - {x: -235.36, y: 1.306, z: -212.47}
+  timeLimit: 150
+  milkCanCount: 1

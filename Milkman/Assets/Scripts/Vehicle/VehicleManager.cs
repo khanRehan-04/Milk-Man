@@ -9,6 +9,7 @@ public class VehicleManager : MonoBehaviour
     public GameObject carCamera;
     public GameObject carCanvas;
     public RCC_CarControllerV3 carController;
+    public ObjectiveManager objectiveManager;
 
     // The child objects that should remain active and be re-parented to the car
     public GameObject childObject1; // This one will match car rotation with an offset
@@ -32,58 +33,74 @@ public class VehicleManager : MonoBehaviour
     public event Action OnEnterCar;
     public event Action OnExitCar;
 
+    // Add this at the top with other private fields
+    private bool hasStartedObjective = false;
+
     public void EnterCar()
     {
-        // Deactivate the entire player, but leave the child objects active
-        player.SetActive(false);
-
-        // Keep the child objects active
-        if (childObject1 != null) childObject1.SetActive(true);
-        if (childObject2 != null) childObject2.SetActive(true);
-
-        // Parent the child objects to the car
-        if (childObject1 != null)
+        if (FlowManager.Instance.CanPerformAction(GameState.DriveTruck))
         {
-            childObject1.transform.SetParent(carController.transform);
+            // Deactivate the entire player, but leave the child objects active
+            player.SetActive(false);
 
-            // Match rotation to car but account for the offset
-            childObject1.transform.rotation = carController.transform.rotation * Quaternion.Euler(defaultRotationOffset);
-        }
+            // Keep the child objects active
+            if (childObject1 != null) childObject1.SetActive(true);
+            if (childObject2 != null) childObject2.SetActive(true);
 
-        if (childObject2 != null)
-        {
-            childObject2.transform.SetParent(carController.transform);
-        }
-
-        // Enable the car camera and canvas
-        carCamera.SetActive(true);
-        carCanvas.SetActive(true);
-
-        // Enable car controls
-        carController.enabled = true;
-
-        // Get reference to the exit button and its DOTween animation
-        if (carCanvas != null)
-        {
-            if (carExitButton != null)
+            // Parent the child objects to the car
+            if (childObject1 != null)
             {
-                exitButtonAnimation = carExitButton.GetComponent<DOTweenAnimation>();
-                if (exitButtonAnimation == null)
+                childObject1.transform.SetParent(carController.transform);
+
+                // Match rotation to car but account for the offset
+                childObject1.transform.rotation = carController.transform.rotation * Quaternion.Euler(defaultRotationOffset);
+            }
+
+            if (childObject2 != null)
+            {
+                childObject2.transform.SetParent(carController.transform);
+            }
+
+            // Enable the car camera and canvas
+            carCamera.SetActive(true);
+            carCanvas.SetActive(true);
+
+            // Enable car controls
+            carController.enabled = true;
+
+            // Get reference to the exit button and its DOTween animation
+            if (carCanvas != null)
+            {
+                if (carExitButton != null)
                 {
-                    Debug.LogWarning("No DOTweenAnimation found on the car exit button!");
+                    exitButtonAnimation = carExitButton.GetComponent<DOTweenAnimation>();
+                    if (exitButtonAnimation == null)
+                    {
+                        Debug.LogWarning("No DOTweenAnimation found on the car exit button!");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No Button found in carCanvas!");
                 }
             }
-            else
+
+            // Set flag to start checking for Point objects
+            isInCar = true;
+
+            if (!hasStartedObjective)
             {
-                Debug.LogWarning("No Button found in carCanvas!");
+                objectiveManager.StartObjective();
+                hasStartedObjective = true;
             }
+
+            // Invoke the enter car event
+            OnEnterCar?.Invoke();
         }
-
-        // Set flag to start checking for Point objects
-        isInCar = true;
-
-        // Invoke the enter car event
-        OnEnterCar?.Invoke();
+        else
+        {
+            FlowManager.Instance.ShowCurrentStatePopup();
+        }
     }
 
     public void ExitCar()
